@@ -337,7 +337,7 @@ public:
 // A logging listener with Win32 console API color support which which prints 
 // to stdout and the debug channel.
 //-----------------------------------------------------------------------------
-#ifndef _X360
+#ifdef _WIN32
 class CColorizedLoggingListener : public CSimpleLoggingListener
 {
 public:
@@ -367,17 +367,15 @@ public:
 			}
 		}
 
-#ifdef _WIN32
 		if ( !m_bQuietDebugger && Plat_IsInDebugSession() )
 		{
 			Plat_DebugString( pMessage );
 		}
-#endif
 	}
 
 	Win32ConsoleColorContext_t m_ColorContext;
 };
-#endif // !_X360
+#endif
 
 
 //-----------------------------------------------------------------------------
